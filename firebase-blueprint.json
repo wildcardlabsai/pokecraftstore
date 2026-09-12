@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user profile in the application.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "customer"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["email", "role", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "An ecommerce product available in the store.",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string", "maxLength": 100 },
+        "name": { "type": "string", "maxLength": 150 },
+        "price": { "type": "number" },
+        "compareAtPrice": { "type": "number" },
+        "category": { "type": "string", "maxLength": 50 },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "stock": { "type": "number" },
+        "featured": { "type": "boolean" },
+        "newRelease": { "type": "boolean" },
+        "bestSeller": { "type": "boolean" },
+        "images": { "type": "array" },
+        "shortDescription": { "type": "string", "maxLength": 500 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "dimensions": { "type": "string", "maxLength": 100 },
+        "material": { "type": "string", "maxLength": 100 },
+        "height": { "type": "string", "maxLength": 50 },
+        "printTime": { "type": "string", "maxLength": 50 },
+        "finish": { "type": "string", "maxLength": 100 },
+        "recommendedAge": { "type": "string", "maxLength": 50 },
+        "careInstructions": { "type": "string", "maxLength": 200 },
+        "tags": { "type": "array" },
+        "variants": { "type": "array" }
+      },
+      "required": ["name", "slug", "price", "category", "images", "shortDescription", "description"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "format": "email" },
+        "date": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["pending", "processing", "shipped", "delivered", "cancelled"] },
+        "total": { "type": "number" },
+        "items": { "type": "array" },
+        "stripeSessionId": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["email", "date", "status", "total", "items"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "User profile records. Managed securely, admins can list."
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Product inventory. Publicly readable, writeable only by admins."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders. Readable by owner or admin. Writeable only via backend/admin."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "PokeCraft",
+  "description": "Premium 3D printed collectibles, display stands, and desk accessories for Pokémon fans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

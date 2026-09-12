@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-brand-deep: #071525;
+  --color-brand-navy: #0D1B2A;
+  --color-brand-yellow: #FFD21F;
+  --color-brand-yellow-hover: #E5BC1B;
+  --color-brand-light: #F5F7FA;
+  --color-brand-dark: #172033;
+  --color-brand-slate: #64748B;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
